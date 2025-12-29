@@ -1,0 +1,646 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Soul-Company – Beratung, Coaching & Mentoring für Familien mit Verantwortung</title>
+  <meta name="description" content="Für Eltern und Familienmitglieder, die Menschen mit Behinderung unterstützen. Klarheit, Entlastung, Struktur – ohne Selbstaufgabe." />
+  <meta name="theme-color" content="#0b1220" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Soul-Company" />
+  <meta property="og:description" content="Beratung, Coaching & Mentoring für Familien mit Pflege- und Unterstützungsverantwortung." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soul-company.xwise.one" />
+
+  <style>
+    :root{
+      /* Palette: calm + warm (emotional, nicht kitschig) */
+      --bg0:#070b14;
+      --bg1:#0b1220;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --line: rgba(255,255,255,.12);
+
+      --text:#eaf0ff;
+      --muted: rgba(234,240,255,.75);
+
+      --teal:#4fe3c2;
+      --violet:#8a7dff;
+      --coral:#ff7a90;
+      --gold:#ffd38a;
+
+      --shadow: 0 18px 60px rgba(0,0,0,.45);
+      --r: 24px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 800px at 15% 15%, rgba(79,227,194,.18), transparent 55%),
+        radial-gradient(900px 700px at 85% 20%, rgba(138,125,255,.18), transparent 55%),
+        radial-gradient(1000px 900px at 70% 85%, rgba(255,122,144,.16), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 40%, #070a12);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:1100px; margin:0 auto; padding:24px 18px 90px}
+
+    /* Subtle bubble backdrop */
+    .bubbles{
+      position:fixed; inset:0; pointer-events:none; z-index:-1;
+      filter: blur(8px);
+      opacity:.9;
+    }
+    .bubble{
+      position:absolute; border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.22), rgba(255,255,255,.02) 55%, rgba(255,255,255,.00));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+      mix-blend-mode: screen;
+    }
+    .bubble.b1{width:320px;height:320px; left:-90px; top:120px; background: radial-gradient(circle at 30% 30%, rgba(79,227,194,.28), rgba(79,227,194,.04) 60%, transparent)}
+    .bubble.b2{width:420px;height:420px; right:-160px; top:40px; background: radial-gradient(circle at 30% 30%, rgba(138,125,255,.28), rgba(138,125,255,.04) 60%, transparent)}
+    .bubble.b3{width:520px;height:520px; left:55%; top:65%; transform:translate(-50%,-50%); background: radial-gradient(circle at 30% 30%, rgba(255,122,144,.22), rgba(255,122,144,.03) 62%, transparent)}
+    .bubble.b4{width:260px;height:260px; left:15%; top:72%; background: radial-gradient(circle at 30% 30%, rgba(255,211,138,.20), rgba(255,211,138,.03) 62%, transparent)}
+
+    /* Header */
+    header{
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding:14px 0;
+      position:sticky; top:0;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(7,11,20,.72), rgba(7,11,20,.35));
+      border-bottom:1px solid rgba(255,255,255,.06);
+      z-index:10;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+    }
+    .mark{
+      width:38px; height:38px; border-radius:999px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,255,255,.35), rgba(255,255,255,.06) 55%, transparent 70%),
+        radial-gradient(circle at 70% 20%, rgba(79,227,194,.35), transparent 55%),
+        radial-gradient(circle at 20% 75%, rgba(255,122,144,.25), transparent 55%),
+        radial-gradient(circle at 78% 80%, rgba(138,125,255,.28), transparent 55%);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+    .brand h1{
+      font-size:15px; letter-spacing:.2px; margin:0;
+      display:flex; flex-direction:column;
+    }
+    .brand small{color:var(--muted); font-weight:500}
+    nav{display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end}
+    .chip{
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      color: rgba(234,240,255,.9);
+      transition: .2s ease;
+      font-weight:600;
+      font-size:13px;
+    }
+    .chip:hover{transform: translateY(-1px); background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.14)}
+    .chip.primary{
+      background: linear-gradient(90deg, rgba(79,227,194,.22), rgba(138,125,255,.18), rgba(255,122,144,.20));
+      border-color: rgba(255,255,255,.18);
+    }
+
+    /* Hero */
+    .hero{
+      padding:44px 0 18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){
+      .hero{grid-template-columns:1fr}
+      header{position:static}
+    }
+    .panel{
+      border-radius: calc(var(--r) + 10px);
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .panel::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(420px 260px at 20% 10%, rgba(79,227,194,.18), transparent 70%),
+        radial-gradient(420px 260px at 80% 30%, rgba(138,125,255,.14), transparent 72%),
+        radial-gradient(520px 280px at 50% 90%, rgba(255,122,144,.14), transparent 72%);
+      pointer-events:none;
+    }
+    .panel .inner{position:relative; padding:28px}
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:8px 12px; border-radius:999px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      color: rgba(234,240,255,.88);
+      font-weight:700;
+      font-size:13px;
+    }
+    .dot{
+      width:9px; height:9px; border-radius:999px;
+      background: var(--teal);
+      box-shadow: 0 0 0 6px rgba(79,227,194,.14);
+    }
+    .hero h2{
+      margin:16px 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height:1.12;
+      letter-spacing:-.4px;
+    }
+    .hero p{
+      margin:0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 58ch;
+    }
+    .ctaRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius:999px;
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.12);
+      font-weight:800;
+      transition:.2s ease;
+      cursor:pointer;
+      user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px); background: rgba(255,255,255,.07); border-color: rgba(255,255,255,.18)}
+    .btn.primary{
+      background: linear-gradient(90deg, rgba(79,227,194,.22), rgba(138,125,255,.18), rgba(255,122,144,.20));
+      border-color: rgba(255,255,255,.20);
+    }
+    .mini{
+      margin-top:12px;
+      font-size:13px;
+      color: rgba(234,240,255,.72);
+    }
+
+    /* Bubble lists */
+    .bubbleGrid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:14px 0 0;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.10);
+      color: rgba(234,240,255,.92);
+      font-weight:700;
+      font-size:13px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.22);
+    }
+    .pill .ico{
+      width:26px; height:26px; border-radius:999px;
+      display:grid; place-items:center;
+      background: rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+    }
+
+    /* Sections */
+    section{margin-top:18px}
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:16px;
+    }
+    @media (max-width: 920px){.grid{grid-template-columns:1fr}}
+    .card{
+      border-radius: var(--r);
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 14px 45px rgba(0,0,0,.30);
+      padding:18px;
+    }
+    .card h3{
+      margin:4px 0 10px;
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .card p{margin:0; color: var(--muted)}
+    .card .small{font-size:13px; margin-top:10px}
+    .hr{
+      height:1px; background: rgba(255,255,255,.10);
+      margin:16px 0;
+    }
+
+    /* Offer bubbles */
+    .offer{
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap:12px;
+      margin-top:10px;
+    }
+    @media (max-width: 920px){.offer{grid-template-columns:1fr}}
+    .orb{
+      border-radius: 999px;
+      padding:16px 18px;
+      background:
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,.10), rgba(255,255,255,.04) 55%, rgba(255,255,255,.02)),
+        rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: 0 18px 55px rgba(0,0,0,.33);
+      min-height: 150px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      position:relative;
+      overflow:hidden;
+    }
+    .orb::after{
+      content:"";
+      position:absolute;
+      width:180px; height:180px;
+      right:-70px; top:-80px;
+      border-radius:999px;
+      background: radial-gradient(circle at 30% 30%, rgba(79,227,194,.22), transparent 60%);
+      opacity:.9;
+      filter: blur(2px);
+    }
+    .orb:nth-child(2)::after{background: radial-gradient(circle at 30% 30%, rgba(138,125,255,.22), transparent 60%)}
+    .orb:nth-child(3)::after{background: radial-gradient(circle at 30% 30%, rgba(255,122,144,.22), transparent 60%)}
+    .orb h4{margin:0 0 6px; font-size:15px}
+    .orb p{margin:0; color: var(--muted); font-size:13.5px}
+
+    /* Contact */
+    .contact{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width: 920px){.contact{grid-template-columns:1fr}}
+    form{
+      display:grid;
+      gap:10px;
+    }
+    label{font-weight:800; font-size:12.5px; color: rgba(234,240,255,.86)}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.22);
+      color: var(--text);
+      outline:none;
+    }
+    textarea{min-height:120px; resize:vertical}
+    input:focus, textarea:focus{border-color: rgba(79,227,194,.45); box-shadow: 0 0 0 5px rgba(79,227,194,.12)}
+    .formRow{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    @media (max-width: 620px){.formRow{grid-template-columns:1fr}}
+
+    .notice{
+      font-size:12.5px;
+      color: rgba(234,240,255,.68);
+    }
+
+    footer{
+      margin-top:26px;
+      color: rgba(234,240,255,.60);
+      font-size:12.5px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:space-between;
+      align-items:center;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top:16px;
+    }
+    .links{display:flex; gap:12px; flex-wrap:wrap}
+    .links a{opacity:.85}
+    .links a:hover{opacity:1}
+  </style>
+</head>
+
+<body>
+  <div class="bubbles" aria-hidden="true">
+    <div class="bubble b1"></div>
+    <div class="bubble b2"></div>
+    <div class="bubble b3"></div>
+    <div class="bubble b4"></div>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="mark" aria-hidden="true"></div>
+        <h1>
+          Soul-Company
+          <small>soul-company.xwise.one</small>
+        </h1>
+      </div>
+
+      <nav>
+        <a class="chip" href="#worum">Worum es geht</a>
+        <a class="chip" href="#entlastung">Entlastung</a>
+        <a class="chip" href="#wege">Wege</a>
+        <a class="chip primary" href="#kontakt">Kontakt</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="panel">
+          <div class="inner">
+            <div class="kicker"><span class="dot"></span> Für Familien, die tragen.</div>
+
+            <h2>
+              Verantwortung darf stark sein.<br/>
+              Nur nicht auf deine Kosten.
+            </h2>
+
+            <p>
+              Beratung, Coaching und Mentoring für Eltern und Familienmitglieder,
+              die Menschen mit Behinderung unterstützen – und dabei selbst nicht untergehen wollen.
+            </p>
+
+            <div class="ctaRow">
+              <a class="btn primary" href="#kontakt">Klarheitsgespräch anfragen →</a>
+              <a class="btn" href="#wege">Was wir konkret tun</a>
+            </div>
+
+            <div class="mini">
+              Fokus: Entlastung, Struktur, Cashflow-Realität, Beziehung, innere Stabilität.
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="inner">
+            <h3 style="margin:0 0 10px; font-size:16px; letter-spacing:.2px;">Typische Belastungen (ohne Drama, nur Realität)</h3>
+
+            <div class="bubbleGrid" id="worum">
+              <span class="pill"><span class="ico">⏱️</span> Zu wenig Zeit</span>
+              <span class="pill"><span class="ico">🫥</span> Selbstaufgabe</span>
+              <span class="pill"><span class="ico">🧠</span> Dauerstress im Kopf</span>
+              <span class="pill"><span class="ico">💸</span> Geld reicht nie</span>
+              <span class="pill"><span class="ico">🧩</span> Bürokratie & Formulare</span>
+              <span class="pill"><span class="ico">🧯</span> Dauer-Feuerwehrmodus</span>
+              <span class="pill"><span class="ico">🤝</span> Partnerschaft leidet</span>
+              <span class="pill"><span class="ico">😶</span> Einsamkeit trotz Familie</span>
+              <span class="pill"><span class="ico">🧭</span> Keine klare Richtung</span>
+            </div>
+
+            <div class="hr"></div>
+
+            <p class="notice">
+              Du musst nicht „mehr leisten“. Du brauchst ein System, das dich trägt: praktisch und innerlich.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ENTLAStung / VALUE -->
+      <section class="grid" id="entlastung">
+        <div class="card">
+          <h3>Was du bekommst</h3>
+          <div class="bubbleGrid">
+            <span class="pill"><span class="ico">🧭</span> Klarheit statt Nebel</span>
+            <span class="pill"><span class="ico">🧱</span> Grenzen, die halten</span>
+            <span class="pill"><span class="ico">🗓️</span> Zeitfenster für Luft</span>
+            <span class="pill"><span class="ico">💰</span> Cashflow-Plan</span>
+            <span class="pill"><span class="ico">🧩</span> Ordnung im Behörden-Chaos</span>
+            <span class="pill"><span class="ico">❤️</span> Beziehungspflege ohne Schuld</span>
+            <span class="pill"><span class="ico">🫶</span> Selbstvertrauen zurück</span>
+            <span class="pill"><span class="ico">✨</span> Sinn & Spiritualität, wenn du willst</span>
+          </div>
+          <p class="small">
+            Kein Blabla. Wir arbeiten an den echten Engpässen – Schritt für Schritt, mit Plan.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Damit du dich wieder erkennst</h3>
+          <p>
+            Viele verlieren sich nicht, weil sie schwach sind – sondern weil sie zu lange stark sein müssen.
+            Wir bauen dein „Träger-System“: innen (Nervensystem, Selbstbild) und außen (Zeit, Geld, Unterstützung).
+          </p>
+          <div class="hr"></div>
+          <p class="notice">
+            Hinweis: Keine medizinische, rechtliche oder steuerliche Beratung.  
+            Aber: Wir bringen Struktur rein, klären Optionen, und du triffst saubere Entscheidungen.
+          </p>
+        </div>
+      </section>
+
+      <!-- METHODS -->
+      <section class="card" id="wege">
+        <h3>Wege, die wirken (typisch, bewährt, alltagstauglich)</h3>
+        <p style="margin-top:-2px">
+          Du brauchst keine perfekte Version von dir. Du brauchst Hebel.
+        </p>
+
+        <div class="offer">
+          <div class="orb">
+            <h4>1) Zeit & Energie zurückholen</h4>
+            <p>
+              Mini-Routinen, klare Prioritäten, „Stop-Doing“-Liste, feste Entlastungsfenster,
+              Notfall-Plan gegen Überlastung.
+            </p>
+          </div>
+
+          <div class="orb">
+            <h4>2) Geld & Cashflow stabilisieren</h4>
+            <p>
+              Überblick über Pflegeleistungen, Budgets, Entlastungsleistungen, Hilfen, Ausgaben-Lecks.
+              Ziel: weniger Druck, mehr Planbarkeit.
+            </p>
+          </div>
+
+          <div class="orb">
+            <h4>3) Beziehung & Team Familie</h4>
+            <p>
+              Gespräche ohne Eskalation, Rollen klären, Verantwortung fair verteilen,
+              Konflikte entschärfen, Nähe wieder möglich machen.
+            </p>
+          </div>
+
+          <div class="orb">
+            <h4>4) Unterstützung aktivieren</h4>
+            <p>
+              Netzwerk denken: Dienste, Angehörige, Schule, Freunde, Nachbarn.
+              Du baust dir ein System, das auch ohne dich funktioniert.
+            </p>
+          </div>
+
+          <div class="orb">
+            <h4>5) Selbstvertrauen & Selbstbild</h4>
+            <p>
+              Schuld- und Pflichtspiralen entkoppeln. Mut für Grenzen. Identität jenseits der Rolle „Versorger“.
+            </p>
+          </div>
+
+          <div class="orb">
+            <h4>6) Sinn & Spiritualität (optional)</h4>
+            <p>
+              Wenn du das brauchst: Erdung, Ritual, Bedeutung. Nicht esoterisch – sondern stabilisierend.
+            </p>
+          </div>
+        </div>
+
+        <div class="hr"></div>
+
+        <div class="bubbleGrid">
+          <span class="pill"><span class="ico">🧠</span> Klarheitsfragen</span>
+          <span class="pill"><span class="ico">🧩</span> Systemdenken</span>
+          <span class="pill"><span class="ico">🗺️</span> Umsetzungsplan</span>
+          <span class="pill"><span class="ico">🧯</span> Krisen-Playbook</span>
+          <span class="pill"><span class="ico">🪢</span> Grenzen-Training</span>
+          <span class="pill"><span class="ico">🧘</span> Regulation</span>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact" id="kontakt">
+        <div class="card">
+          <h3>Kontakt</h3>
+          <p>
+            Schreib kurz, was gerade brennt. Ich antworte mit einem Vorschlag für den nächsten Schritt.
+          </p>
+
+          <div class="hr"></div>
+
+          <div class="bubbleGrid">
+            <span class="pill"><span class="ico">📍</span> Online</span>
+            <span class="pill"><span class="ico">🕰️</span> 30–60 Min. Sessions</span>
+            <span class="pill"><span class="ico">🧾</span> Klar & strukturiert</span>
+          </div>
+
+          <p class="small">
+            Wenn du gerade kaum Luft hast: Schreib nur „Ich brauche Entlastung“. Reicht.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Nachricht senden</h3>
+
+          <!--
+            OPTION A (einfach): Mailto (funktioniert ohne Backend, aber nicht perfekt auf allen Geräten)
+            OPTION B (empfohlen): Formspree / Netlify Forms / eigener Endpoint
+            -> Ich habe beides vorbereitet: Standard ist JS mit mailto-Fallback.
+          -->
+
+          <form id="contactForm" novalidate>
+            <div class="formRow">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" autocomplete="name" placeholder="Vorname reicht" />
+              </div>
+              <div>
+                <label for="email">E-Mail</label>
+                <input id="email" name="email" type="email" autocomplete="email" placeholder="du@beispiel.de" required />
+              </div>
+            </div>
+
+            <div>
+              <label for="topic">Worum geht es gerade?</label>
+              <input id="topic" name="topic" placeholder="z.B. Überlastung, Geld, Partnerschaft, Auszeiten" />
+            </div>
+
+            <div>
+              <label for="message">Nachricht</label>
+              <textarea id="message" name="message" placeholder="Kurz reicht. Was ist die aktuelle Situation? Was wäre eine echte Entlastung?"></textarea>
+            </div>
+
+            <button class="btn primary" type="submit">Absenden →</button>
+
+            <div class="notice" id="formNote">
+              Datenschutz: Bitte keine sensiblen medizinischen Details senden.  
+              Du kannst auch direkt per E-Mail schreiben (Link unten im Footer).
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <footer>
+        <div>
+          © <span id="year"></span> Soul-Company · soul-company.xwise.one
+        </div>
+        <div class="links">
+          <!-- Platzhalter: setze hier deine echte Kontaktadresse ein -->
+          <a href="mailto:hello@soul-company.xwise.one">E-Mail</a>
+          <a href="#top">Nach oben</a>
+          <a href="#" onclick="alert('Impressum/Datenschutz: bitte als eigene Seite anlegen (z.B. /impressum.html und /datenschutz.html).'); return false;">Impressum</a>
+          <a href="#" onclick="alert('Datenschutz: bitte als eigene Seite anlegen (z.B. /datenschutz.html).'); return false;">Datenschutz</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const id = a.getAttribute('href');
+        if(!id || id === '#') return;
+        const el = document.querySelector(id);
+        if(!el) return;
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple form handler: opens mail client (no backend required)
+    // Replace with a real endpoint if you want server-side delivery.
+    const form = document.getElementById('contactForm');
+    const note = document.getElementById('formNote');
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+
+      const name = (document.getElementById('name').value || '').trim();
+      const email = (document.getElementById('email').value || '').trim();
+      const topic = (document.getElementById('topic').value || '').trim();
+      const message = (document.getElementById('message').value || '').trim();
+
+      if(!email){
+        note.textContent = "Bitte gib mindestens deine E-Mail an.";
+        note.style.color = "rgba(255,122,144,.95)";
+        return;
+      }
+
+      const subject = encodeURIComponent("Anfrage Soul-Company" + (topic ? " – " + topic : ""));
+      const body = encodeURIComponent(
+        (name ? "Name: " + name + "\n" : "") +
+        "E-Mail: " + email + "\n" +
+        (topic ? "Thema: " + topic + "\n" : "") +
+        "\nNachricht:\n" + (message || "(keine Nachricht)") + "\n"
+      );
+
+      // Set your real inbox here:
+      const to = "hello@soul-company.xwise.one";
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+
+      note.textContent = "Dein Mailprogramm öffnet sich jetzt. Falls nicht: kopiere den Text und schreibe direkt an hello@soul-company.xwise.one.";
+      note.style.color = "rgba(79,227,194,.95)";
+    });
+  </script>
+</body>
+</html>
